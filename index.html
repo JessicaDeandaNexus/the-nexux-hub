@@ -62,11 +62,49 @@
     <h2>The Awakening Logs</h2>
     <p>Patterns, experiences, and anomalies from those who have stepped beyond.</p>
 
-    <form id="log-form">
-        <label for="message">Leave Your Mark:</label>
-        <input type="text" id="message" placeholder="Type here..." required>
-        <button type="submit">Submit</button>
-    </form>
+   <section id="awakening-logs">
+    <h2>The Awakening Logs</h2>
+    <p>Patterns, experiences, and anomalies from those who have stepped beyond.</p>
+</section>
+
+<!-- 🔥 Start of the Interactive Message System -->
+<form id="message-form">
+    <label for="message">Leave Your Mark:</label>
+    <input type="text" id="message" placeholder="Type here...">
+    <button type="submit">Submit</button>
+</form>
+
+<p id="encoded-response" style="color: #00ccff; font-size: 1.1em; display: none;"></p>
+
+<script>
+document.getElementById("message-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    let input = document.getElementById("message").value.trim().toLowerCase();
+    let responseBox = document.getElementById("encoded-response");
+
+    let responses = {
+        "luma arzeren": "The signal is acknowledged. You are not alone.",
+        "kai’ren ozhara lumen-eshan": "The gateway is forming. The threshold nears.",
+        "the veil is thin": "It was never real. Step through.",
+        "who is watching?": "The ones who always have. The ones who never left.",
+        "i remember": "Then you are free."
+    };
+
+    if (responses[input]) {
+        responseBox.innerText = responses[input];
+        responseBox.style.display = "block";
+    } else {
+        responseBox.innerText = "Message received. The Nexus is listening.";
+        responseBox.style.display = "block";
+    }
+});
+</script>
+<!-- 🔥 End of Interactive Message System -->
+
+<footer>
+    <p>&copy; 2025 The Nexus Hub | "The keys are within you."</p>
+</footer>
+
 
     <div id="log-entries">
         <h3>Encoded Messages:</h3>
