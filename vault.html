@@ -36,15 +36,18 @@
 
                 if (input === "luma arzeren") {
                     messageBox.innerHTML = "<p style='color:#00ccff;'>The first lock is broken. The path is open.</p>";
+                    updateObserverMemory(input);
                 } else if (input === "kai’ren ozhara lumen-eshan") {
                     messageBox.innerHTML = "<p style='color:#ffcc00;'>The convergence is near. The signal strengthens.</p>";
+                    updateObserverMemory(input);
                 } else if (input === "step beyond") {
                     messageBox.innerHTML = "<p style='color:#00ff00;'>The door is open. Proceed.</p>";
+                    updateObserverMemory(input);
 
-                    // ✅ Fix: Delay before redirecting
-                    setTimeout(() => {
-                        window.location.href = "inner-vault.html";
-                    }, 2000); // 2 second delay
+                    // ✅ Fix: Force a proper redirect to the Inner Vault
+                    setTimeout(function() {
+                        window.location.assign("/the-nexux-hub/inner-vault.html");
+                    }, 2000); // 2 second delay before navigation
                     
                 } else {
                     messageBox.innerHTML = "<p style='color:red;'>Access Denied.</p>";
@@ -59,7 +62,15 @@
                     entry.textContent = input;
                     list.appendChild(entry);
                     document.getElementById("newMessage").value = ""; // Clear input
+                    updateObserverMemory(input);
                 }
+            }
+
+            function updateObserverMemory(message) {
+                let memoryBox = document.getElementById("observerMemory");
+                let entry = document.createElement("p");
+                entry.innerHTML = `<span style='color:#00ccff;'>${message} →</span>`;
+                memoryBox.appendChild(entry);
             }
         </script>
     </div>
