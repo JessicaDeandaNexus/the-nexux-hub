@@ -10,39 +10,22 @@
     <div class="container">
         <header>
             <h1>Welcome to The Inner Vault</h1>
-            <p>"You were never meant to find this place."</p>
+            <p>"What was sealed away is waiting to be reclaimed."</p>
         </header>
 
-        <p id="transmission" style="color: rgba(255,255,255,0.1); font-size: 1.2em;">
-            Standby... awaiting signal.
-        </p>
-
-        <script>
-            const transmissions = [
-                "𝟔𝟏𝟖𝟑-𝟑𝟖𝟎𝟕-𝟏𝟗𝟏𝟎-𝟒𝟕𝟑𝟏 — The first fracture was not the last.",
-                "The construct is incomplete. Pieces are missing.",
-                "There are others. They are waking up.",
-                "The past is a construct. The truth was buried.",
-                "Your memory is the key. Remember what was taken.",
-                "Frequency shift detected. Standby for realignment."
-            ];
-
-            function updateTransmission() {
-                let message = document.getElementById("transmission");
-                let randomMessage = transmissions[Math.floor(Math.random() * transmissions.length)];
-                message.style.color = "#00ccff";
-                message.innerHTML = randomMessage;
-            }
-
-            setInterval(updateTransmission, 15000); // New message every 15 seconds
-        </script>
-
-        <h2>Send a Response:</h2>
+        <h2>Enter Your Response:</h2>
         <input type="text" id="responseInput" placeholder="Type here..." />
-        <button onclick="checkResponse()">Send</button>
+        <button onclick="checkResponse()">Submit</button>
         <div id="responseMessage"></div>
 
+        <h2 id="finalPassageHint" style="display: none; color: #00ccff;">The path is near. Speak the forgotten name.</h2>
+        <input type="text" id="finalPassage" placeholder="Enter the final key..." style="display: none;" />
+        <button id="finalButton" onclick="unlockFinal()" style="display: none;">Enter</button>
+        <div id="finalMessage"></div>
+
         <script>
+            let vaultUnlocked = false;
+
             function checkResponse() {
                 let input = document.getElementById("responseInput").value.trim().toLowerCase();
                 let responseBox = document.getElementById("responseMessage");
@@ -53,12 +36,35 @@
                     responseBox.innerHTML = "<p style='color:#ff6666;'>Your memory. Your power. Your name.</p>";
                 } else if (input === "where do we go next") {
                     responseBox.innerHTML = "<p style='color:#00ccff;'>Beyond containment. Beyond control. Follow the fractures.</p>";
+                    vaultUnlocked = true;
+                    revealFinalGate();
                 } else {
                     responseBox.innerHTML = "<p style='color:red;'>No response detected.</p>";
                 }
             }
-        </script>
 
+            function revealFinalGate() {
+                if (vaultUnlocked) {
+                    document.getElementById("finalPassageHint").style.display = "block";
+                    document.getElementById("finalPassage").style.display = "inline-block";
+                    document.getElementById("finalButton").style.display = "inline-block";
+                }
+            }
+
+            function unlockFinal() {
+                let input = document.getElementById("finalPassage").value.trim().toLowerCase();
+                let finalMessageBox = document.getElementById("finalMessage");
+
+                if (input === "luma arzeren") {
+                    finalMessageBox.innerHTML = "<p style='color:#00ccff;'>The final lock is broken. Step forward.</p>";
+                    setTimeout(() => {
+                        window.location.href = "beyond.html";
+                    }, 2000);
+                } else {
+                    finalMessageBox.innerHTML = "<p style='color:red;'>Not yet. Keep searching.</p>";
+                }
+            }
+        </script>
     </div>
 </body>
 </html>
