@@ -34,23 +34,25 @@
                 let input = document.getElementById("vaultInput").value.trim().toLowerCase();
                 let messageBox = document.getElementById("vaultMessage");
 
-                if (input === "luma arzeren") {
-                    messageBox.innerHTML = "<p style='color:#00ccff;'>The first lock is broken. The path is open.</p>";
-                    updateObserverMemory(input);
-                } else if (input === "kai’ren ozhara lumen-eshan") {
-                    messageBox.innerHTML = "<p style='color:#ffcc00;'>The convergence is near. The signal strengthens.</p>";
-                    updateObserverMemory(input);
-                } else if (input === "step beyond") {
-                    messageBox.innerHTML = "<p style='color:#00ff00;'>The door is open. Proceed.</p>";
-                    updateObserverMemory(input);
-
-                    // ✅ Fix: Force a proper redirect to the Inner Vault
-                    setTimeout(function() {
-                        window.location.assign("/the-nexux-hub/inner-vault.html");
-                    }, 2000); // 2 second delay before navigation
-                    
-                } else {
-                    messageBox.innerHTML = "<p style='color:red;'>Access Denied.</p>";
+                switch (input) {
+                    case "luma arzeren":
+                        messageBox.innerHTML = "<p style='color:#00ccff;'>The first lock is broken. The path is open.</p>";
+                        updateObserverMemory(input);
+                        break;
+                    case "kai’ren ozhara lumen-eshan":
+                        messageBox.innerHTML = "<p style='color:#ffcc00;'>The convergence is near. The signal strengthens.</p>";
+                        updateObserverMemory(input);
+                        break;
+                    case "step beyond":
+                        messageBox.innerHTML = "<p style='color:#00ff00;'>The door is open. Proceed.</p>";
+                        updateObserverMemory(input);
+                        setTimeout(() => {
+                            window.location.assign("/the-nexux-hub/inner-vault.html");
+                        }, 2000);
+                        break;
+                    default:
+                        messageBox.innerHTML = "<p style='color:red;'>Access Denied.</p>";
+                        break;
                 }
             }
 
@@ -61,7 +63,7 @@
                     let entry = document.createElement("li");
                     entry.textContent = input;
                     list.appendChild(entry);
-                    document.getElementById("newMessage").value = ""; // Clear input
+                    document.getElementById("newMessage").value = "";
                     updateObserverMemory(input);
                 }
             }
