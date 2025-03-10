@@ -10,15 +10,26 @@
     <div class="container">
         <header>
             <h1>Welcome to The Nexus Hub</h1>
-            
-            <p>"Not all will see, but those who do will know."</p>
+            <p id="changing-message">Loading...</p>
         </header>
-<p id="hidden-link" style="color: rgba(255,255,255,0.1); cursor: pointer;">(Step Beyond)</p>
-<script>
-    document.getElementById("hidden-link").addEventListener("click", function() {
-        window.location.href = "threshold.html";
-    });
-</script>
+
+        <p id="hidden-link" style="color: rgba(255,255,255,0.1); cursor: pointer;">(Step Beyond)</p>
+        <script>
+            document.getElementById("hidden-link").addEventListener("click", function() {
+                window.location.href = "threshold.html";
+            });
+
+            // Dynamic Message System
+            let messages = [
+                "You were meant to find this.",
+                "Reality is shifting. Do you feel it?",
+                "Something is watching. Are you awake?",
+                "What happens when you look past the illusion?",
+                "There is more here than you know.",
+                "Some doors only open when you are ready."
+            ];
+            document.getElementById("changing-message").innerText = messages[Math.floor(Math.random() * messages.length)];
+        </script>
 
         <nav>
             <ul>
