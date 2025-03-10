@@ -13,14 +13,11 @@
             <p>"Beyond this point lies the unknown."</p>
         </header>
 
-        <h2>Enter the Key:</h2>
+        <p>Enter the Key:</p>
         <input type="text" id="vaultInput" placeholder="Type here..." />
         <button onclick="checkVaultKey()">Unlock</button>
 
         <div id="vaultMessage"></div>
-
-        <!-- Hidden Message (Reveals when correct phrase is entered) -->
-        <p id="hiddenText" style="display: none; color: #00ff99;">It was never real. Step through.</p>
 
         <h2>Encoded Messages:</h2>
         <ul id="messages"></ul>
@@ -30,20 +27,27 @@
         <button onclick="submitMessage()">Submit</button>
 
         <script>
+            let vaultSequence = ["luma arzeren", "kai’ren ozhara lumen-eshan", "the veil is thin"];
+            let userEntries = [];
+
             function checkVaultKey() {
                 let input = document.getElementById("vaultInput").value.trim().toLowerCase();
                 let messageBox = document.getElementById("vaultMessage");
-                let hiddenText = document.getElementById("hiddenText");
 
-                if (input === "luma arzeren") {
-                    messageBox.innerHTML = "<p style='color:#00ccff;'>The first lock is broken. The path is open.</p>";
-                } else if (input === "kai’ren ozhara lumen-eshan") {
-                    messageBox.innerHTML = "<p style='color:#ffcc00;'>The convergence is near. The signal strengthens.</p>";
-                } else if (input === "the veil is thin") {
-                    messageBox.innerHTML = "<p style='color:#ff6666;'>Something is watching. Can you see it?</p>";
-                    hiddenText.style.display = "block"; // Reveal hidden message
+                userEntries.push(input);
+
+                if (input === vaultSequence[userEntries.length - 1]) {
+                    if (userEntries.length === vaultSequence.length) {
+                        messageBox.innerHTML = "<p style='color:#ffcc00;'>The final lock is broken. Step through.</p>";
+                        setTimeout(() => {
+                            window.location.href = "inner-vault.html"; // Redirect to Inner Vault
+                        }, 2000);
+                    } else {
+                        messageBox.innerHTML = "<p style='color:#00ccff;'>The next key awaits...</p>";
+                    }
                 } else {
-                    messageBox.innerHTML = "<p style='color:red;'>Access Denied.</p>";
+                    messageBox.innerHTML = "<p style='color:red;'>Incorrect sequence. Resetting...</p>";
+                    userEntries = []; // Reset sequence
                 }
             }
 
