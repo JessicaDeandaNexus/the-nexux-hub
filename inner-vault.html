@@ -18,20 +18,7 @@
         <button onclick="checkResponse()">Submit</button>
         <div id="responseMessage"></div>
 
-        <h2 id="finalPassageHint" style="display: none; color: #00ccff;">The path is near. Speak the forgotten name.</h2>
-        <input type="text" id="finalPassage" placeholder="Enter the final key..." style="display: none;" />
-        <button id="finalButton" onclick="unlockFinal()" style="display: none;">Enter</button>
-        <div id="finalMessage"></div>
-
-        <h3>Observer’s Memory:</h3>
-        <p id="observerLog" style="color: #ffcc00;">"The fragments are aligning."</p>
-
-        <h3>Encoded Transmission:</h3>
-        <p id="hiddenMessage" style="color: rgba(255,255,255,0.1); cursor: pointer;">(A message lies beneath the surface...)</p>
-
         <script>
-            let vaultUnlocked = false;
-
             function checkResponse() {
                 let input = document.getElementById("responseInput").value.trim().toLowerCase();
                 let responseBox = document.getElementById("responseMessage");
@@ -42,39 +29,13 @@
                     responseBox.innerHTML = "<p style='color:#ff6666;'>Your memory. Your power. Your name.</p>";
                 } else if (input === "where do we go next") {
                     responseBox.innerHTML = "<p style='color:#00ccff;'>Beyond containment. Beyond control. Follow the fractures.</p>";
-                    vaultUnlocked = true;
-                    revealFinalGate();
+                    setTimeout(() => {
+                        window.location.href = "beyond.html"; // Next level transition
+                    }, 2000);
                 } else {
                     responseBox.innerHTML = "<p style='color:red;'>No response detected.</p>";
                 }
             }
-
-            function revealFinalGate() {
-                if (vaultUnlocked) {
-                    document.getElementById("finalPassageHint").style.display = "block";
-                    document.getElementById("finalPassage").style.display = "inline-block";
-                    document.getElementById("finalButton").style.display = "inline-block";
-                }
-            }
-
-            function unlockFinal() {
-                let input = document.getElementById("finalPassage").value.trim().toLowerCase();
-                let finalMessageBox = document.getElementById("finalMessage");
-
-                if (input === "luma arzeren") {
-                    finalMessageBox.innerHTML = "<p style='color:#00ccff;'>The final lock is broken. Step forward.</p>";
-                    setTimeout(() => {
-                        window.location.href = "beyond.html";
-                    }, 2000);
-                } else {
-                    finalMessageBox.innerHTML = "<p style='color:red;'>Not yet. Keep searching.</p>";
-                }
-            }
-
-            document.getElementById("hiddenMessage").addEventListener("click", function() {
-                this.style.color = "#00ccff";
-                this.innerHTML = "The fractures are widening. The truth is near.";
-            });
         </script>
     </div>
 </body>
