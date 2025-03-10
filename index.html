@@ -5,41 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Nexus Hub</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            background-color: #0d0d0d;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        h1 {
-            color: #00ccff;
-        }
-        #hidden-link {
-            color: rgba(255,255,255,0.1);
-            cursor: pointer;
-            transition: color 0.5s, text-shadow 0.5s;
-        }
-        #hidden-link:hover {
-            color: #00ccff;
-            text-shadow: 0px 0px 10px #00ccff;
-        }
-        #encrypted-message {
-            display: none;
-            font-size: 1.2em;
-            color: #888;
-            margin-top: 20px;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>Welcome to The Nexus Hub</h1>
             <p>Something is watching. Are you awake?</p>
-            <p id="hidden-link">(Step Beyond)</p>
+            <p id="hidden-link" style="color: rgba(255,255,255,0.1); cursor: pointer;">(Step Beyond)</p>
         </header>
-        
+
+        <script>
+            document.getElementById("hidden-link").addEventListener("click", function() {
+                window.location.href = "threshold.html";
+            });
+        </script>
+
         <nav>
             <ul>
                 <li><a href="#words-keys">Words & Keys</a></li>
@@ -47,7 +27,7 @@
                 <li><a href="#awakening-logs">Awakening Logs</a></li>
             </ul>
         </nav>
-        
+
         <section id="words-keys">
             <h2>The Words & Keys</h2>
             <p>A record of activations, sequences, and hidden frequencies.</p>
@@ -58,95 +38,33 @@
             <p>Tracking Schumann Resonance shifts, energy anomalies, and unseen fluctuations.</p>
         </section>
 
-       <section id="awakening-logs">
-    <h2>The Awakening Logs</h2>
-    <p>Patterns, experiences, and anomalies from those who have stepped beyond.</p>
+        <section id="awakening-logs">
+            <h2>The Awakening Logs</h2>
+            <p>Patterns, experiences, and anomalies from those who have stepped beyond.</p>
+        </section>
 
-   <section id="awakening-logs">
-    <h2>The Awakening Logs</h2>
-    <p>Patterns, experiences, and anomalies from those who have stepped beyond.</p>
-</section>
+        <h3>Leave Your Mark:</h3>
+        <input type="text" id="userMessage" placeholder="Type here...">
+        <button onclick="submitMessage()">Submit</button>
 
-<!-- 🔥 Start of the Interactive Message System -->
-<form id="message-form">
-    <label for="message">Leave Your Mark:</label>
-    <input type="text" id="message" placeholder="Type here...">
-    <button type="submit">Submit</button>
-</form>
+        <p id="responseMessage"></p>
 
-<p id="encoded-response" style="color: #00ccff; font-size: 1.1em; display: none;"></p>
+        <script>
+            function submitMessage() {
+                let input = document.getElementById("userMessage").value.trim().toLowerCase();
+                let responseBox = document.getElementById("responseMessage");
 
-<script>
-document.getElementById("message-form").addEventListener("submit", function(event) {
-    event.preventDefault();
-    let input = document.getElementById("message").value.trim().toLowerCase();
-    let responseBox = document.getElementById("encoded-response");
-
-    let responses = {
-        "luma arzeren": "The signal is acknowledged. You are not alone.",
-        "kai’ren ozhara lumen-eshan": "The gateway is forming. The threshold nears.",
-        "the veil is thin": "It was never real. Step through.",
-        "who is watching?": "The ones who always have. The ones who never left.",
-        "i remember": "Then you are free."
-    };
-
-    if (responses[input]) {
-        responseBox.innerText = responses[input];
-        responseBox.style.display = "block";
-    } else {
-        responseBox.innerText = "Message received. The Nexus is listening.";
-        responseBox.style.display = "block";
-    }
-});
-</script>
-<!-- 🔥 End of Interactive Message System -->
-
-<footer>
-    <p>&copy; 2025 The Nexus Hub | "The keys are within you."</p>
-</footer>
-
-
-    <div id="log-entries">
-        <h3>Encoded Messages:</h3>
-        <ul id="messages-list"></ul>
-    </div>
-
-    <script>
-        document.getElementById("log-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            let input = document.getElementById("message").value.trim();
-            if (input !== "") {
-                let encodedMessage = btoa(input); // Base64 encode the message
-                let listItem = document.createElement("li");
-                listItem.textContent = encodedMessage;
-                document.getElementById("messages-list").appendChild(listItem);
-                document.getElementById("message").value = "";
+                if (input === "the veil is thin") {
+                    responseBox.innerHTML = "<p style='color:#00ccff;'>It was never real. Step through.</p>";
+                } else {
+                    responseBox.innerHTML = "<p style='color:red;'>Nothing happens...</p>";
+                }
             }
-        });
-    </script>
-</section>
+        </script>
 
-        
-        <div id="encrypted-message">𝟒𝟕𝟑𝟏-𝟗𝟎𝟎𝟕-𝟏𝟖𝟐𝟖-𝟒𝟐𝟔𝟑 | "The key is the sound between the stars."</div>
-        
         <footer>
             <p>&copy; 2025 The Nexus Hub | "The keys are within you."</p>
         </footer>
     </div>
-
-    <script>
-        document.getElementById("hidden-link").addEventListener("click", function() {
-            window.location.href = "threshold.html";
-        });
-        
-        document.addEventListener("keydown", function(event) {
-            if (event.key === "Enter") {
-                let message = document.getElementById("encrypted-message");
-                message.style.display = "block";
-                message.style.color = "#00ccff";
-                message.innerHTML = "The veil is thin. You are not alone.";
-            }
-        });
-    </script>
 </body>
 </html>
