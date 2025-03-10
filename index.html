@@ -43,22 +43,46 @@
             <p>Patterns, experiences, and anomalies from those who have stepped beyond.</p>
         </section>
 
-        <h3>Leave Your Mark:</h3>
-        <input type="text" id="userMessage" placeholder="Type here...">
+        <h2>Leave Your Mark:</h2>
+        <input type="text" id="newMessage" placeholder="Type here..." />
         <button onclick="submitMessage()">Submit</button>
 
-        <p id="responseMessage"></p>
+        <h3>Encoded Messages:</h3>
+        <ul id="messages"></ul>
 
         <script>
-            function submitMessage() {
-                let input = document.getElementById("userMessage").value.trim().toLowerCase();
-                let responseBox = document.getElementById("responseMessage");
+            document.addEventListener("DOMContentLoaded", function () {
+                loadMessages();
+            });
 
-                if (input === "the veil is thin") {
-                    responseBox.innerHTML = "<p style='color:#00ccff;'>It was never real. Step through.</p>";
-                } else {
-                    responseBox.innerHTML = "<p style='color:red;'>Nothing happens...</p>";
+            function submitMessage() {
+                let input = document.getElementById("newMessage").value.trim();
+                if (input) {
+                    let list = document.getElementById("messages");
+                    let entry = document.createElement("li");
+                    entry.textContent = input;
+                    list.appendChild(entry);
+
+                    saveMessage(input); // Save to local storage
+                    document.getElementById("newMessage").value = ""; // Clear input
                 }
+            }
+
+            function saveMessage(message) {
+                let messages = JSON.parse(localStorage.getItem("nexusMessages")) || [];
+                messages.push(message);
+                localStorage.setItem("nexusMessages", JSON.stringify(messages));
+            }
+
+            function loadMessages() {
+                let messages = JSON.parse(localStorage.getItem("nexusMessages")) || [];
+                let list = document.getElementById("messages");
+
+                messages.forEach(msg => {
+                    let entry = document.createElement("li");
+                    entry.textContent = msg;
+                    list.appendChild(entry);
+                });
             }
         </script>
 
