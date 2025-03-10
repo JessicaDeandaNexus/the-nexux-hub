@@ -5,120 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Vault</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            background-color: black;
-            color: #00ccff;
-            text-align: center;
-            font-family: 'Courier New', monospace;
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            position: relative;
-        }
-
-        #vault-message {
-            font-size: 1.5em;
-            opacity: 0;
-            transition: opacity 2s ease-in-out;
-        }
-
-        #key-input, #leave-message {
-            margin-top: 20px;
-        }
-
-        input {
-            background: transparent;
-            border: 1px solid #00ccff;
-            color: #00ccff;
-            font-size: 1em;
-            padding: 5px;
-            text-align: center;
-        }
-
-        button {
-            background: transparent;
-            border: 1px solid #ffcc00;
-            color: #ffcc00;
-            font-size: 1em;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #ffcc00;
-            color: black;
-        }
-
-        #hidden-link {
-            font-size: 1.2em;
-            color: rgba(255, 255, 255, 0.1);
-            cursor: pointer;
-            position: absolute;
-            bottom: 10%;
-        }
-    </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>Welcome to The Vault</h1>
+            <p>"Beyond this point lies the unknown."</p>
+        </header>
 
-    <h1>Welcome to The Vault</h1>
-    <p>"Beyond this point lies the unknown."</p>
-
-    <div id="key-input">
         <p>Enter the Key:</p>
-        <input type="text" id="vaultKey" placeholder="Type here..." />
+        <input type="text" id="vaultInput" placeholder="Type here..." />
         <button onclick="checkVaultKey()">Unlock</button>
-    </div>
 
-    <p id="vault-message"></p>
+        <div id="vaultMessage"></div>
 
-    <h2>Encoded Messages:</h2>
-    <ul id="messages"></ul>
+        <h2>Encoded Messages:</h2>
+        <ul id="messages"></ul>
 
-    <div id="leave-message">
         <p>Leave Your Mark:</p>
         <input type="text" id="newMessage" placeholder="Type here..." />
         <button onclick="submitMessage()">Submit</button>
+
+        <p id="finalPrompt"></p>
+
+        <script>
+            function checkVaultKey() {
+                let input = document.getElementById("vaultInput").value.trim().toLowerCase();
+                let messageBox = document.getElementById("vaultMessage");
+
+                if (input === "luma arzeren") {
+                    messageBox.innerHTML = "<p style='color:#00ccff;'>The first lock is broken. The path is open.</p>";
+                } else if (input === "kai’ren ozhara lumen-eshan") {
+                    messageBox.innerHTML = "<p style='color:#ffcc00;'>The convergence is near. The signal strengthens.</p>";
+                } else if (input === "the veil is thin") {
+                    messageBox.innerHTML = "<p style='color:#ff6666;'>Something is watching. Can you see it?</p>";
+                } else if (input === "step beyond") {
+                    messageBox.innerHTML = "<p style='color:#00ff00;'>The threshold shatters. You are through.</p>";
+                    setTimeout(function() {
+                        window.location.href = "final_layer.html";  // Redirect to the final layer
+                    }, 3000);
+                } else {
+                    messageBox.innerHTML = "<p style='color:red;'>The signal weakens. Try again.</p>";
+                }
+            }
+
+            function submitMessage() {
+                let input = document.getElementById("newMessage").value.trim();
+                if (input) {
+                    let list = document.getElementById("messages");
+                    let entry = document.createElement("li");
+                    entry.textContent = input;
+                    list.appendChild(entry);
+                    document.getElementById("newMessage").value = ""; // Clear input
+                }
+            }
+        </script>
+
     </div>
-
-    <p id="hidden-link">(Step Beyond)</p>
-
-    <script>
-        document.getElementById("hidden-link").addEventListener("click", function() {
-            window.location.href = "beyond.html";
-        });
-
-        function checkVaultKey() {
-            let input = document.getElementById("vaultKey").value.trim().toLowerCase();
-            let messageBox = document.getElementById("vault-message");
-
-            if (input === "luma arzeren") {
-                messageBox.innerHTML = "<p style='color:#00ccff;'>The first lock is broken. The path is open.</p>";
-            } else if (input === "kai’ren ozhara lumen-eshan") {
-                messageBox.innerHTML = "<p style='color:#ffcc00;'>The convergence is near. The signal strengthens.</p>";
-            } else if (input === "the veil is thin") {
-                messageBox.innerHTML = "<p style='color:#ff6666;'>Something is watching. Can you see it?</p>";
-            } else {
-                messageBox.innerHTML = "<p style='color:red;'>Access Denied.</p>";
-            }
-
-            messageBox.style.opacity = "1";
-        }
-
-        function submitMessage() {
-            let input = document.getElementById("newMessage").value.trim();
-            if (input) {
-                let list = document.getElementById("messages");
-                let entry = document.createElement("li");
-                entry.textContent = input;
-                list.appendChild(entry);
-                document.getElementById("newMessage").value = ""; // Clear input
-            }
-        }
-    </script>
-
 </body>
 </html>
