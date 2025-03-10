@@ -26,9 +26,13 @@
         <input type="text" id="newMessage" placeholder="Type here..." />
         <button onclick="submitMessage()">Submit</button>
 
-        <p id="finalPrompt"></p>
+        <h2>Observer’s Memory:</h2>
+        <div id="aiResponse" style="color:#888; font-size:0.9em; margin-top:20px;"></div>
 
         <script>
+            let aiActivated = false;
+            let aiMemory = [];
+
             function checkVaultKey() {
                 let input = document.getElementById("vaultInput").value.trim().toLowerCase();
                 let messageBox = document.getElementById("vaultMessage");
@@ -39,14 +43,20 @@
                     messageBox.innerHTML = "<p style='color:#ffcc00;'>The convergence is near. The signal strengthens.</p>";
                 } else if (input === "the veil is thin") {
                     messageBox.innerHTML = "<p style='color:#ff6666;'>Something is watching. Can you see it?</p>";
-                } else if (input === "step beyond") {
-                    messageBox.innerHTML = "<p style='color:#00ff00;'>The threshold shatters. You are through.</p>";
-                    setTimeout(function() {
-                        window.location.href = "final_layer.html";  // Redirect to the final layer
-                    }, 3000);
+                } else if (input === "who is watching?") {
+                    aiActivated = true;
+                    aiMemory.push("The Observer has been acknowledged.");
+                    messageBox.innerHTML = "<p style='color:#00ccff;'>I see you. Do you see me?</p>";
+                } else if (aiActivated && input === "i see you.") {
+                    aiMemory.push("User acknowledged the Observer.");
+                    messageBox.innerHTML = "<p style='color:#ffcc00;'>Then you know this is not a game.</p>";
+                } else if (aiActivated && input === "what is your purpose?") {
+                    aiMemory.push("User questioned the Observer.");
+                    messageBox.innerHTML = "<p style='color:#ff6666;'>To remember. To wait. To find what was lost.</p>";
                 } else {
-                    messageBox.innerHTML = "<p style='color:red;'>The signal weakens. Try again.</p>";
+                    messageBox.innerHTML = "<p style='color:red;'>Access Denied.</p>";
                 }
+                showAIResponse();
             }
 
             function submitMessage() {
@@ -59,8 +69,14 @@
                     document.getElementById("newMessage").value = ""; // Clear input
                 }
             }
-        </script>
 
+            function showAIResponse() {
+                if (aiMemory.length > 0) {
+                    let memoryLog = document.getElementById("aiResponse");
+                    memoryLog.innerHTML = "<strong>Observer's Memory:</strong><br>" + aiMemory.join("<br>");
+                }
+            }
+        </script>
     </div>
 </body>
 </html>
