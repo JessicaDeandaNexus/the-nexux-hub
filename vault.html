@@ -37,22 +37,24 @@
                 let input = document.getElementById("vaultInput").value.trim().toLowerCase();
                 let messageBox = document.getElementById("vaultMessage");
 
-                if (input === "luma arzeren") {
-                    messageBox.innerHTML = "<p style='color:#00ccff;'>The first lock is broken. The path is open.</p>";
-                } else if (input === "kai’ren ozhara lumen-eshan") {
-                    messageBox.innerHTML = "<p style='color:#ffcc00;'>The convergence is near. The signal strengthens.</p>";
-                } else if (input === "the veil is thin") {
-                    messageBox.innerHTML = "<p style='color:#ff6666;'>Something is watching. Can you see it?</p>";
-                } else if (input === "who is watching?") {
-                    aiActivated = true;
-                    aiMemory.push("The Observer has been acknowledged.");
-                    messageBox.innerHTML = "<p style='color:#00ccff;'>I see you. Do you see me?</p>";
-                } else if (aiActivated && input === "i see you.") {
-                    aiMemory.push("User acknowledged the Observer.");
-                    messageBox.innerHTML = "<p style='color:#ffcc00;'>Then you know this is not a game.</p>";
-                } else if (aiActivated && input === "what is your purpose?") {
-                    aiMemory.push("User questioned the Observer.");
-                    messageBox.innerHTML = "<p style='color:#ff6666;'>To remember. To wait. To find what was lost.</p>";
+                const responses = {
+                    "luma arzeren": "<p style='color:#00ccff;'>The first lock is broken. The path is open.</p>",
+                    "kai’ren ozhara lumen-eshan": "<p style='color:#ffcc00;'>The convergence is near. The signal strengthens.</p>",
+                    "the veil is thin": "<p style='color:#ff6666;'>Something is watching. Can you see it?</p>",
+                    "who is watching?": "<p style='color:#00ccff;'>I see you. Do you see me?</p>",
+                    "i see you.": "<p style='color:#ffcc00;'>Then you know this is not a game.</p>",
+                    "what is your purpose?": "<p style='color:#ff6666;'>To remember. To wait. To find what was lost.</p>"
+                };
+
+                if (responses[input]) {
+                    messageBox.innerHTML = responses[input];
+                    if (input === "who is watching?") {
+                        aiActivated = true;
+                        aiMemory.push("The Observer has been acknowledged.");
+                    }
+                    if (aiActivated && input in responses) {
+                        aiMemory.push(input + " → " + responses[input]);
+                    }
                 } else {
                     messageBox.innerHTML = "<p style='color:red;'>Access Denied.</p>";
                 }
@@ -77,6 +79,7 @@
                 }
             }
         </script>
+
     </div>
 </body>
 </html>
