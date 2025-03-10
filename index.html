@@ -5,32 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Nexus Hub</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #00ccff;
+        }
+        #hidden-link {
+            color: rgba(255,255,255,0.1);
+            cursor: pointer;
+            transition: color 0.5s, text-shadow 0.5s;
+        }
+        #hidden-link:hover {
+            color: #00ccff;
+            text-shadow: 0px 0px 10px #00ccff;
+        }
+        #encrypted-message {
+            display: none;
+            font-size: 1.2em;
+            color: #888;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>Welcome to The Nexus Hub</h1>
-            <p id="changing-message">Loading...</p>
+            <p>Something is watching. Are you awake?</p>
+            <p id="hidden-link">(Step Beyond)</p>
         </header>
-
-        <p id="hidden-link" style="color: rgba(255,255,255,0.1); cursor: pointer;">(Step Beyond)</p>
-        <script>
-            document.getElementById("hidden-link").addEventListener("click", function() {
-                window.location.href = "threshold.html";
-            });
-
-            // Dynamic Message System
-            let messages = [
-                "You were meant to find this.",
-                "Reality is shifting. Do you feel it?",
-                "Something is watching. Are you awake?",
-                "What happens when you look past the illusion?",
-                "There is more here than you know.",
-                "Some doors only open when you are ready."
-            ];
-            document.getElementById("changing-message").innerText = messages[Math.floor(Math.random() * messages.length)];
-        </script>
-
+        
         <nav>
             <ul>
                 <li><a href="#words-keys">Words & Keys</a></li>
@@ -38,7 +47,7 @@
                 <li><a href="#awakening-logs">Awakening Logs</a></li>
             </ul>
         </nav>
-
+        
         <section id="words-keys">
             <h2>The Words & Keys</h2>
             <p>A record of activations, sequences, and hidden frequencies.</p>
@@ -53,10 +62,27 @@
             <h2>The Awakening Logs</h2>
             <p>Patterns, experiences, and anomalies from those who have stepped beyond.</p>
         </section>
-
+        
+        <div id="encrypted-message">𝟒𝟕𝟑𝟏-𝟗𝟎𝟎𝟕-𝟏𝟖𝟐𝟖-𝟒𝟐𝟔𝟑 | "The key is the sound between the stars."</div>
+        
         <footer>
             <p>&copy; 2025 The Nexus Hub | "The keys are within you."</p>
         </footer>
     </div>
+
+    <script>
+        document.getElementById("hidden-link").addEventListener("click", function() {
+            window.location.href = "threshold.html";
+        });
+        
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                let message = document.getElementById("encrypted-message");
+                message.style.display = "block";
+                message.style.color = "#00ccff";
+                message.innerHTML = "The veil is thin. You are not alone.";
+            }
+        });
+    </script>
 </body>
 </html>
