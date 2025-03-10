@@ -13,7 +13,20 @@
             <p>"Beyond this point lies the unknown."</p>
         </header>
         <p>This is where hidden knowledge, transmissions, and energy logs will be stored.</p>
-        <p>More is coming soon...</p>
-    </div>
-</body>
-</html>
+        
+        <div id="encrypted-message" style="color: rgba(255,255,255,0.1); font-size: 1.2em;">
+            𝟒𝟕𝟑𝟏-𝟗𝟎𝟎𝟕-𝟏𝟖𝟐𝟖-𝟒𝟐𝟔𝟑  
+            𝐓𝐡𝐞 𝐤𝐞𝐲 𝐢𝐬 𝐭𝐡𝐞 𝐬𝐨𝐮𝐧𝐝 𝐛𝐞𝐭𝐰𝐞𝐞𝐧 𝐭𝐡𝐞 𝐬𝐭𝐚𝐫𝐬.  
+        </div>
+
+        <script>
+            document.addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    let message = document.getElementById("encrypted-message");
+                    message.style.color = "#00ccff";
+                    message.innerHTML = "The veil is thin. You are not alone.";
+                }
+            });
+        </script>
+
+    </
