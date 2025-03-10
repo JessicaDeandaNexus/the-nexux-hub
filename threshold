@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Threshold</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>You've Reached The Threshold</h1>
+            <p>"Only those who seek will find."</p>
+        </header>
+        <form id="unlock-form">
+            <label for="passphrase">Enter the Key:</label>
+            <input type="text" id="passphrase" placeholder="Type here...">
+            <button type="submit">Unlock</button>
+        </form>
+        <p id="response"></p>
+        <script>
+            document.getElementById("unlock-form").addEventListener("submit", function(event) {
+                event.preventDefault();
+                let input = document.getElementById("passphrase").value.trim();
+                if (input === "LumaArzeren") {
+                    window.location.href = "vault.html"; // Unlocks the next layer
+                } else {
+                    document.getElementById("response").innerText = "Access Denied.";
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>
