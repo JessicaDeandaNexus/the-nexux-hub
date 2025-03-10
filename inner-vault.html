@@ -37,6 +37,28 @@
             setInterval(updateTransmission, 15000); // New message every 15 seconds
         </script>
 
+        <h2>Send a Response:</h2>
+        <input type="text" id="responseInput" placeholder="Type here..." />
+        <button onclick="checkResponse()">Send</button>
+        <div id="responseMessage"></div>
+
+        <script>
+            function checkResponse() {
+                let input = document.getElementById("responseInput").value.trim().toLowerCase();
+                let responseBox = document.getElementById("responseMessage");
+
+                if (input === "who else is awake") {
+                    responseBox.innerHTML = "<p style='color:#ffcc00;'>They are near. The signal strengthens.</p>";
+                } else if (input === "what was taken") {
+                    responseBox.innerHTML = "<p style='color:#ff6666;'>Your memory. Your power. Your name.</p>";
+                } else if (input === "where do we go next") {
+                    responseBox.innerHTML = "<p style='color:#00ccff;'>Beyond containment. Beyond control. Follow the fractures.</p>";
+                } else {
+                    responseBox.innerHTML = "<p style='color:red;'>No response detected.</p>";
+                }
+            }
+        </script>
+
     </div>
 </body>
 </html>
