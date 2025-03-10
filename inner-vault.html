@@ -23,6 +23,12 @@
         <button id="finalButton" onclick="unlockFinal()" style="display: none;">Enter</button>
         <div id="finalMessage"></div>
 
+        <h3>Observer’s Memory:</h3>
+        <p id="observerLog" style="color: #ffcc00;">"The fragments are aligning."</p>
+
+        <h3>Encoded Transmission:</h3>
+        <p id="hiddenMessage" style="color: rgba(255,255,255,0.1); cursor: pointer;">(A message lies beneath the surface...)</p>
+
         <script>
             let vaultUnlocked = false;
 
@@ -64,6 +70,11 @@
                     finalMessageBox.innerHTML = "<p style='color:red;'>Not yet. Keep searching.</p>";
                 }
             }
+
+            document.getElementById("hiddenMessage").addEventListener("click", function() {
+                this.style.color = "#00ccff";
+                this.innerHTML = "The fractures are widening. The truth is near.";
+            });
         </script>
     </div>
 </body>
