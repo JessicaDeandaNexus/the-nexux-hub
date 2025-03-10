@@ -3,108 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Beyond</title>
+    <title>Beyond</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            background-color: black;
-            color: #00ccff;
-            text-align: center;
-            font-family: 'Courier New', monospace;
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            position: relative;
-        }
-
-        #hidden-message, #final-transmission {
-            display: none;
-            font-size: 1.5em;
-            opacity: 0;
-            transition: opacity 2s ease-in-out;
-        }
-
-        #glitch-text {
-            font-size: 1.2em;
-            color: rgba(255, 255, 255, 0.1);
-            cursor: pointer;
-            position: absolute;
-            bottom: 10%;
-        }
-
-        #input-container {
-            margin-top: 20px;
-        }
-
-        input {
-            background: transparent;
-            border: 1px solid #00ccff;
-            color: #00ccff;
-            font-size: 1em;
-            padding: 5px;
-            text-align: center;
-        }
-
-        button {
-            background: transparent;
-            border: 1px solid #ffcc00;
-            color: #ffcc00;
-            font-size: 1em;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #ffcc00;
-            color: black;
-        }
-    </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>Welcome Beyond</h1>
+            <p>"The threshold is crossed. There is no turning back."</p>
+        </header>
 
-    <h1 id="hidden-message">"You were never meant to stop here."</h1>
-    <p id="glitch-text">(Something flickers...)</p>
+        <h2>Encoded Transmission:</h2>
+        <div id="encodedMessage" style="color: rgba(255,255,255,0.2); font-size: 1.2em;">
+            𝟐𝟑-𝟓𝟕𝟗𝟏-𝟎𝟎𝟒𝟗-𝟖𝟖𝟏𝟑
+        </div>
 
-    <div id="input-container">
-        <input type="text" id="final-key" placeholder="Type here..." />
-        <button onclick="checkFinalKey()">Submit</button>
-    </div>
+        <p id="revealHint" style="display: none; color: #ffcc00;">The hidden is now visible.</p>
+        <p id="hiddenMessage" style="display: none; color: #00ccff;">"You were never lost. You were always here."</p>
 
-    <p id="final-transmission"></p>
+        <h2>Final Response:</h2>
+        <input type="text" id="finalResponse" placeholder="Type your final words..." />
+        <button onclick="unlockTruth()">Submit</button>
 
-    <script>
-        document.body.addEventListener("mousemove", function() {
-            document.getElementById("hidden-message").style.display = "block";
-            document.getElementById("hidden-message").style.opacity = "1";
-        });
+        <div id="finalMessage"></div>
 
-        document.getElementById("glitch-text").addEventListener("click", function() {
-            this.style.color = "#ff6666";
-            this.innerText = "The veil fractures...";
-            setTimeout(() => {
-                this.innerText = "(Something flickers...)";
-                this.style.color = "rgba(255, 255, 255, 0.1)";
-            }, 3000);
-        });
+        <script>
+            function unlockTruth() {
+                let input = document.getElementById("finalResponse").value.trim().toLowerCase();
+                let finalMessageBox = document.getElementById("finalMessage");
 
-        function checkFinalKey() {
-            let input = document.getElementById("final-key").value.trim().toLowerCase();
-            let message = document.getElementById("final-transmission");
-
-            if (input === "i step beyond") {
-                message.innerHTML = `"The final lock is broken. You were always free."`;
-                message.style.display = "block";
-                message.style.opacity = "1";
-            } else {
-                message.innerHTML = `"The signal weakens. Try again."`;
-                message.style.display = "block";
-                message.style.opacity = "1";
+                if (input === "i am awake") {
+                    document.getElementById("revealHint").style.display = "block";
+                    document.getElementById("hiddenMessage").style.display = "block";
+                    finalMessageBox.innerHTML = "<p style='color:#00ccff;'>The last veil has fallen.</p>";
+                } else {
+                    finalMessageBox.innerHTML = "<p style='color:red;'>Try again. Look deeper.</p>";
+                }
             }
-        }
-    </script>
+        </script>
 
+    </div>
 </body>
 </html>
