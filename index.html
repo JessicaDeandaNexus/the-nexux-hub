@@ -58,10 +58,36 @@
             <p>Tracking Schumann Resonance shifts, energy anomalies, and unseen fluctuations.</p>
         </section>
 
-        <section id="awakening-logs">
-            <h2>The Awakening Logs</h2>
-            <p>Patterns, experiences, and anomalies from those who have stepped beyond.</p>
-        </section>
+       <section id="awakening-logs">
+    <h2>The Awakening Logs</h2>
+    <p>Patterns, experiences, and anomalies from those who have stepped beyond.</p>
+
+    <form id="log-form">
+        <label for="message">Leave Your Mark:</label>
+        <input type="text" id="message" placeholder="Type here..." required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="log-entries">
+        <h3>Encoded Messages:</h3>
+        <ul id="messages-list"></ul>
+    </div>
+
+    <script>
+        document.getElementById("log-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let input = document.getElementById("message").value.trim();
+            if (input !== "") {
+                let encodedMessage = btoa(input); // Base64 encode the message
+                let listItem = document.createElement("li");
+                listItem.textContent = encodedMessage;
+                document.getElementById("messages-list").appendChild(listItem);
+                document.getElementById("message").value = "";
+            }
+        });
+    </script>
+</section>
+
         
         <div id="encrypted-message">𝟒𝟕𝟑𝟏-𝟗𝟎𝟎𝟕-𝟏𝟖𝟐𝟖-𝟒𝟐𝟔𝟑 | "The key is the sound between the stars."</div>
         
