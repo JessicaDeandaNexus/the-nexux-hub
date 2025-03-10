@@ -12,21 +12,48 @@
             <h1>Welcome to The Vault</h1>
             <p>"Beyond this point lies the unknown."</p>
         </header>
-        <p>This is where hidden knowledge, transmissions, and energy logs will be stored.</p>
-        
-        <div id="encrypted-message" style="color: rgba(255,255,255,0.1); font-size: 1.2em;">
-            𝟒𝟕𝟑𝟏-𝟗𝟎𝟎𝟕-𝟏𝟖𝟐𝟖-𝟒𝟐𝟔𝟑  
-            𝐓𝐡𝐞 𝐤𝐞𝐲 𝐢𝐬 𝐭𝐡𝐞 𝐬𝐨𝐮𝐧𝐝 𝐛𝐞𝐭𝐰𝐞𝐞𝐧 𝐭𝐡𝐞 𝐬𝐭𝐚𝐫𝐬.  
-        </div>
+
+        <p>Enter the Key:</p>
+        <input type="text" id="vaultInput" placeholder="Type here..." />
+        <button onclick="checkVaultKey()">Unlock</button>
+
+        <div id="vaultMessage"></div>
+
+        <h2>Encoded Messages:</h2>
+        <ul id="messages"></ul>
+
+        <p>Leave Your Mark:</p>
+        <input type="text" id="newMessage" placeholder="Type here..." />
+        <button onclick="submitMessage()">Submit</button>
 
         <script>
-            document.addEventListener("keydown", function(event) {
-                if (event.key === "Enter") {
-                    let message = document.getElementById("encrypted-message");
-                    message.style.color = "#00ccff";
-                    message.innerHTML = "The veil is thin. You are not alone.";
+            function checkVaultKey() {
+                let input = document.getElementById("vaultInput").value.trim().toLowerCase();
+                let messageBox = document.getElementById("vaultMessage");
+
+                if (input === "luma arzeren") {
+                    messageBox.innerHTML = "<p style='color:#00ccff;'>The first lock is broken. The path is open.</p>";
+                } else if (input === "kai’ren ozhara lumen-eshan") {
+                    messageBox.innerHTML = "<p style='color:#ffcc00;'>The convergence is near. The signal strengthens.</p>";
+                } else if (input === "the veil is thin") {
+                    messageBox.innerHTML = "<p style='color:#ff6666;'>Something is watching. Can you see it?</p>";
+                } else {
+                    messageBox.innerHTML = "<p style='color:red;'>Access Denied.</p>";
                 }
-            });
+            }
+
+            function submitMessage() {
+                let input = document.getElementById("newMessage").value.trim();
+                if (input) {
+                    let list = document.getElementById("messages");
+                    let entry = document.createElement("li");
+                    entry.textContent = input;
+                    list.appendChild(entry);
+                    document.getElementById("newMessage").value = ""; // Clear input
+                }
+            }
         </script>
 
-    </
+    </div>
+</body>
+</html>
