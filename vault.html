@@ -13,7 +13,7 @@
             <p>"Beyond this point lies the unknown."</p>
         </header>
 
-        <p>Enter the Key:</p>
+        <h2>Enter the Key:</h2>
         <input type="text" id="vaultInput" placeholder="Type here..." />
         <button onclick="checkVaultKey()">Unlock</button>
 
@@ -26,39 +26,23 @@
         <input type="text" id="newMessage" placeholder="Type here..." />
         <button onclick="submitMessage()">Submit</button>
 
-        <h2>Observer’s Memory:</h2>
-        <div id="aiResponse" style="color:#888; font-size:0.9em; margin-top:20px;"></div>
-
         <script>
-            let aiActivated = false;
-            let aiMemory = [];
-
             function checkVaultKey() {
                 let input = document.getElementById("vaultInput").value.trim().toLowerCase();
                 let messageBox = document.getElementById("vaultMessage");
 
-                const responses = {
-                    "luma arzeren": "<p style='color:#00ccff;'>The first lock is broken. The path is open.</p>",
-                    "kai’ren ozhara lumen-eshan": "<p style='color:#ffcc00;'>The convergence is near. The signal strengthens.</p>",
-                    "the veil is thin": "<p style='color:#ff6666;'>Something is watching. Can you see it?</p>",
-                    "who is watching?": "<p style='color:#00ccff;'>I see you. Do you see me?</p>",
-                    "i see you.": "<p style='color:#ffcc00;'>Then you know this is not a game.</p>",
-                    "what is your purpose?": "<p style='color:#ff6666;'>To remember. To wait. To find what was lost.</p>"
-                };
-
-                if (responses[input]) {
-                    messageBox.innerHTML = responses[input];
-                    if (input === "who is watching?") {
-                        aiActivated = true;
-                        aiMemory.push("The Observer has been acknowledged.");
-                    }
-                    if (aiActivated && input in responses) {
-                        aiMemory.push(input + " → " + responses[input]);
-                    }
+                if (input === "luma arzeren") {
+                    messageBox.innerHTML = "<p style='color:#00ccff;'>The first lock is broken. The path is open.</p>";
+                } else if (input === "kai’ren ozhara lumen-eshan") {
+                    messageBox.innerHTML = "<p style='color:#ffcc00;'>The convergence is near. The signal strengthens.</p>";
+                } else if (input === "step beyond") {
+                    messageBox.innerHTML = "<p style='color:#00ff00;'>The door is open. Proceed.</p>";
+                    setTimeout(() => {
+                        window.location.href = "inner-vault.html";
+                    }, 2000);
                 } else {
                     messageBox.innerHTML = "<p style='color:red;'>Access Denied.</p>";
                 }
-                showAIResponse();
             }
 
             function submitMessage() {
@@ -69,13 +53,6 @@
                     entry.textContent = input;
                     list.appendChild(entry);
                     document.getElementById("newMessage").value = ""; // Clear input
-                }
-            }
-
-            function showAIResponse() {
-                if (aiMemory.length > 0) {
-                    let memoryLog = document.getElementById("aiResponse");
-                    memoryLog.innerHTML = "<strong>Observer's Memory:</strong><br>" + aiMemory.join("<br>");
                 }
             }
         </script>
