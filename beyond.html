@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Beyond</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: black;
+            color: #00ccff;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+        }
+
+        #hidden-message, #final-transmission {
+            display: none;
+            font-size: 1.5em;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        #glitch-text {
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            position: absolute;
+            bottom: 10%;
+        }
+
+        #input-container {
+            margin-top: 20px;
+        }
+
+        input {
+            background: transparent;
+            border: 1px solid #00ccff;
+            color: #00ccff;
+            font-size: 1em;
+            padding: 5px;
+            text-align: center;
+        }
+
+        button {
+            background: transparent;
+            border: 1px solid #ffcc00;
+            color: #ffcc00;
+            font-size: 1em;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #ffcc00;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="hidden-message">"You were never meant to stop here."</h1>
+    <p id="glitch-text">(Something flickers...)</p>
+
+    <div id="input-container">
+        <input type="text" id="final-key" placeholder="Type here..." />
+        <button onclick="checkFinalKey()">Submit</button>
+    </div>
+
+    <p id="final-transmission"></p>
+
+    <script>
+        document.body.addEventListener("mousemove", function() {
+            document.getElementById("hidden-message").style.display = "block";
+            document.getElementById("hidden-message").style.opacity = "1";
+        });
+
+        document.getElementById("glitch-text").addEventListener("click", function() {
+            this.style.color = "#ff6666";
+            this.innerText = "The veil fractures...";
+            setTimeout(() => {
+                this.innerText = "(Something flickers...)";
+                this.style.color = "rgba(255, 255, 255, 0.1)";
+            }, 3000);
+        });
+
+        function checkFinalKey() {
+            let input = document.getElementById("final-key").value.trim().toLowerCase();
+            let message = document.getElementById("final-transmission");
+
+            if (input === "i step beyond") {
+                message.innerHTML = `"The final lock is broken. You were always free."`;
+                message.style.display = "block";
+                message.style.opacity = "1";
+            } else {
+                message.innerHTML = `"The signal weakens. Try again."`;
+                message.style.display = "block";
+                message.style.opacity = "1";
+            }
+        }
+    </script>
+
+</body>
+</html>
