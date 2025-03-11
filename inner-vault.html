@@ -14,7 +14,35 @@
         </header>
 
         <h2>Proceed further:</h2>
-        <p>The next step awaits. Look deeper.</p>
+        <p id="hidden-trigger" style="color:#00ccff; cursor: pointer;" onclick="revealFinalStep()">The next step awaits. Look deeper.</p>
+
+        <div id="final-step" style="display: none;">
+            <h3>The past was sealed. What must be remembered?</h3>
+            <input type="text" id="finalInput" placeholder="Type here..." />
+            <button onclick="checkFinalKey()">Enter</button>
+            <div id="finalMessage"></div>
+        </div>
+
+        <script>
+            function revealFinalStep() {
+                document.getElementById("final-step").style.display = "block";
+                document.getElementById("hidden-trigger").style.display = "none";
+            }
+
+            function checkFinalKey() {
+                let input = document.getElementById("finalInput").value.trim().toLowerCase();
+                let messageBox = document.getElementById("finalMessage");
+
+                if (input === "luma arzeren") {
+                    messageBox.innerHTML = "<p style='color:#00ccff;'>The final lock is broken. Step forward.</p>";
+                    setTimeout(() => {
+                        window.location.href = "beyond.html";
+                    }, 2000); // Redirects after 2 seconds
+                } else {
+                    messageBox.innerHTML = "<p style='color:red;'>Not yet. Keep searching.</p>";
+                }
+            }
+        </script>
     </div>
 </body>
 </html>
