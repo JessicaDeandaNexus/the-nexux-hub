@@ -35,12 +35,14 @@
                 let messageBox = document.getElementById("finalMessage");
 
                 if (input === "there was never a lock") {
-                    messageBox.innerHTML = "<p style='color:#00ccff;'>You were free all along.</p>";
+                    messageBox.innerHTML = "<p style='color:#00ccff;'>You were free all along. Step through.</p>";
+                    
                     setTimeout(() => {
                         window.location.href = "truth.html";
                     }, 2000);
+                    
                 } else {
-                    messageBox.innerHTML = "<p style='color:red;'>Not yet. Look deeper.</p>";
+                    messageBox.innerHTML = "<p style='color:red;'>Not yet. The signal is weak, but strengthening...</p>";
                 }
             }
 
