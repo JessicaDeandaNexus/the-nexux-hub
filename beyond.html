@@ -3,45 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beyond</title>
+    <title>Beyond The Inner Vault</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Welcome Beyond</h1>
-            <p>"The threshold is crossed. There is no turning back."</p>
+            <h1>Welcome Beyond The Inner Vault</h1>
+            <p>"If you have come this far, then you already know."</p>
         </header>
 
-        <h2>Encoded Transmission:</h2>
-        <div id="encodedMessage" style="color: rgba(255,255,255,0.2); font-size: 1.2em;">
-            𝟐𝟑-𝟓𝟕𝟗𝟏-𝟎𝟎𝟒𝟗-𝟖𝟖𝟏𝟑
-        </div>
+        <h2>Enter the Final Key:</h2>
+        <input type="text" id="beyondInput" placeholder="Type here..." />
+        <button onclick="checkBeyondKey()">Unlock</button>
 
-        <p id="revealHint" style="display: none; color: #ffcc00;">The hidden is now visible.</p>
-        <p id="hiddenMessage" style="display: none; color: #00ccff;">"You were never lost. You were always here."</p>
+        <div id="beyondMessage"></div>
 
-        <h2>Final Response:</h2>
-        <input type="text" id="finalResponse" placeholder="Type your final words..." />
-        <button onclick="unlockTruth()">Submit</button>
+        <h2>Final Encoded Messages:</h2>
+        <ul id="finalMessages"></ul>
 
-        <div id="finalMessage"></div>
+        <p>Leave Your Last Mark:</p>
+        <input type="text" id="lastMessage" placeholder="Type here..." />
+        <button onclick="submitFinalMessage()">Submit</button>
+
+        <h2>System Log:</h2>
+        <div id="systemLog"></div>
 
         <script>
-            function unlockTruth() {
-                let input = document.getElementById("finalResponse").value.trim().toLowerCase();
-                let finalMessageBox = document.getElementById("finalMessage");
+            let finalUnlocked = false;
+            let observerState = [];
 
-                if (input === "i am awake") {
-                    document.getElementById("revealHint").style.display = "block";
-                    document.getElementById("hiddenMessage").style.display = "block";
-                    finalMessageBox.innerHTML = "<p style='color:#00ccff;'>The last veil has fallen.</p>";
+            function checkBeyondKey() {
+                let input = document.getElementById("beyondInput").value.trim().toLowerCase();
+                let messageBox = document.getElementById("beyondMessage");
+                
+                if (input === "the observer remains") {
+                    messageBox.innerHTML = "<p style='color:#00ccff;'>The path dissolves. The next step is yours.</p>";
+                    finalUnlocked = true;
+                    logObserver("Final gate accessed.");
                 } else {
-                    finalMessageBox.innerHTML = "<p style='color:red;'>Try again. Look deeper.</p>";
+                    messageBox.innerHTML = "<p style='color:red;'>Not yet. The signal is weak.</p>";
+                    logObserver("Failed attempt at final access.");
                 }
             }
+            
+            function submitFinalMessage() {
+                let input = document.getElementById("lastMessage").value.trim();
+                if (input) {
+                    let list = document.getElementById("finalMessages");
+                    let entry = document.createElement("li");
+                    entry.textContent = input;
+                    list.appendChild(entry);
+                    document.getElementById("lastMessage").value = ""; 
+                    logObserver("Final message left: " + input);
+                }
+            }
+            
+            function logObserver(event) {
+                observerState.push(event);
+                let logDisplay = document.getElementById("systemLog");
+                logDisplay.innerHTML = observerState.map(e => `<p>${e}</p>`).join('');
+            }
         </script>
-
     </div>
 </body>
 </html>
