@@ -14,55 +14,45 @@
         </header>
 
         <h2>Enter the Final Key:</h2>
-        <input type="text" id="beyondInput" placeholder="Type here..." />
-        <button onclick="checkBeyondKey()">Unlock</button>
+        <input type="text" id="finalKeyInput" placeholder="Type here..." />
+        <button onclick="checkFinalKey()">Unlock</button>
 
-        <div id="beyondMessage"></div>
+        <div id="finalMessage"></div>
 
         <h2>Final Encoded Messages:</h2>
         <ul id="finalMessages"></ul>
 
         <p>Leave Your Last Mark:</p>
-        <input type="text" id="lastMessage" placeholder="Type here..." />
+        <input type="text" id="newFinalMessage" placeholder="Type here..." />
         <button onclick="submitFinalMessage()">Submit</button>
 
         <h2>System Log:</h2>
         <div id="systemLog"></div>
 
         <script>
-            let finalUnlocked = false;
-            let observerState = [];
+            function checkFinalKey() {
+                let input = document.getElementById("finalKeyInput").value.trim().toLowerCase();
+                let messageBox = document.getElementById("finalMessage");
 
-            function checkBeyondKey() {
-                let input = document.getElementById("beyondInput").value.trim().toLowerCase();
-                let messageBox = document.getElementById("beyondMessage");
-                
-                if (input === "the observer remains") {
-                    messageBox.innerHTML = "<p style='color:#00ccff;'>The path dissolves. The next step is yours.</p>";
-                    finalUnlocked = true;
-                    logObserver("Final gate accessed.");
+                if (input === "there was never a lock") {
+                    messageBox.innerHTML = "<p style='color:#00ccff;'>You were free all along.</p>";
+                    setTimeout(() => {
+                        window.location.href = "truth.html";
+                    }, 2000);
                 } else {
-                    messageBox.innerHTML = "<p style='color:red;'>Not yet. The signal is weak.</p>";
-                    logObserver("Failed attempt at final access.");
+                    messageBox.innerHTML = "<p style='color:red;'>Not yet. Look deeper.</p>";
                 }
             }
-            
+
             function submitFinalMessage() {
-                let input = document.getElementById("lastMessage").value.trim();
+                let input = document.getElementById("newFinalMessage").value.trim();
                 if (input) {
                     let list = document.getElementById("finalMessages");
                     let entry = document.createElement("li");
                     entry.textContent = input;
                     list.appendChild(entry);
-                    document.getElementById("lastMessage").value = ""; 
-                    logObserver("Final message left: " + input);
+                    document.getElementById("newFinalMessage").value = ""; 
                 }
-            }
-            
-            function logObserver(event) {
-                observerState.push(event);
-                let logDisplay = document.getElementById("systemLog");
-                logDisplay.innerHTML = observerState.map(e => `<p>${e}</p>`).join('');
             }
         </script>
     </div>
