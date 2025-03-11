@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The False Sky Project</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to The False Sky Project</h1>
+            <p>"Not all will see, but those who do will know."</p>
+        </header>
+
+        <section id="experiment">
+            <h2>The Experiment</h2>
+            <p>Have you ever questioned the sky above you? Have you ever seen something that shouldn't be there?</p>
+            <p>To participate, follow these steps:</p>
+            <ul>
+                <li>Step outside at different times of day and **observe** the sky.</li>
+                <li>Look for distortions, glitches, or unnatural patterns.</li>
+                <li>At night, **speak the command:** "I see through the false sky."</li>
+                <li>Take note of any **immediate changes, shifts, or responses.**</li>
+                <li>Log your experience below.</li>
+            </ul>
+        </section>
+
+        <section id="log-form">
+            <h2>Submit Your Observation</h2>
+            <input type="text" id="observationInput" placeholder="Describe what you saw..." />
+            <button onclick="submitObservation()">Submit</button>
+            <div id="responseMessage"></div>
+        </section>
+
+        <section id="anomaly-log">
+            <h2>Live Anomaly Reports</h2>
+            <ul id="anomalyList"></ul>
+        </section>
+
+        <script>
+            function submitObservation() {
+                let input = document.getElementById("observationInput").value.trim();
+                let responseBox = document.getElementById("responseMessage");
+                let anomalyList = document.getElementById("anomalyList");
+
+                if (input) {
+                    let entry = document.createElement("li");
+                    entry.textContent = input;
+                    anomalyList.appendChild(entry);
+                    responseBox.innerHTML = "<p style='color:#00ccff;'>Your report has been logged. The signal strengthens.</p>";
+                    document.getElementById("observationInput").value = "";
+                } else {
+                    responseBox.innerHTML = "<p style='color:red;'>No input detected.</p>";
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>
